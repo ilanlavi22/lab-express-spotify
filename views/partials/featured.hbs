@@ -1,0 +1,16 @@
+<div class='feature'>
+  <h3>New Releases</h3>
+  {{featured}}
+  <div class='featured-container'>
+    {{#each feature}}
+      <div class='featured-item'>
+        <div class='featured-img'>
+          <a href='/tracks/{{id}}'>
+            <img src='{{images.0.url}}' alt='album for {{name}}' />
+          </a>
+        </div>
+        <div class='featured-name'><a href=''>{{name}}</a></div>
+      </div>
+    {{/each}}
+  </div>
+</div>

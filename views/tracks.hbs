@@ -1,0 +1,18 @@
+{{>search}}
+<div class='feature'>
+  <h3>Playlists Tracks</h3>
+  <div class='tracks-container'>
+    {{#each tracks}}
+      <div class='featured-track'>
+        <figure>
+          <figcaption>{{name}}</figcaption>
+          {{#if preview_url}}
+          <audio controls src='{{preview_url}}'></audio>
+           {{else}}
+           <p>no track ava</p>
+           {{/if}}
+        </figure>
+      </div>
+    {{/each}}
+  </div>
+</div>
