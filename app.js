@@ -30,7 +30,7 @@ spotifyApi
 
 app.get('/', (req, res) => {
     spotifyApi
-        .getNewReleases({ limit: 8, offset: 1, country: 'DE', locale: 'de_DE', timestamp: '2022-04-02T09:00:00' })
+        .getNewReleases({ limit: 8 })
         .then(data => {
             const feature = data.body.albums.items;
             res.render('index', { title: 'Listen to your fav artist', feature });
@@ -45,7 +45,7 @@ app.get('/artist-search', (req, res) => {
     const artistSearch = req.query.search
 
     spotifyApi
-        .searchArtists(artistSearch, { limit: 6 })
+        .searchArtists(artistSearch, { limit: 8 })
         .then(data => {
             const artist = data.body.artists.items;
             res.render('artist-search', { keywords: artistSearch, artist });
@@ -57,11 +57,17 @@ app.get('/artist-search', (req, res) => {
 
 app.get('/albums/:id', (req, res) => {
     const id = (req.params.id);
+    let albums;
+
     spotifyApi
-        .getArtistAlbums(id)
+        .getArtistAlbums(id, { limit: 8 })
         .then(data => {
-            const album = data.body.items
-            res.render('albums', { title: 'Listen to your fav artist', album });
+            albums = data.body.items;
+            return spotifyApi.getNewReleases({ limit: 4 });
+        })
+        .then(data => {
+            const releases = data.body.albums.items;
+            res.render('albums', { title: 'Listen to your fav artist', albums, releases });
         })
         .catch(error => {
             console.log(error);
