@@ -6,10 +6,11 @@
       <div class='featured-item'>
         <div class='featured-img'>
           <a href='/tracks/{{id}}'>
-           {{#if images.0.url}}
-            <img src='{{images.0.url}}' alt='album for {{name}}' />
-             {{else}}
-             <img src='/images/album_placeholder.png' alt='{{name}}' />
+            {{#if images.0.url}}
+              <img src='{{images.0.url}}' alt='album for {{name}}' />
+            {{else}}
+              <img src='/images/album_placeholder.png' alt='{{name}}' />
+            {{/if}}
           </a>
         </div>
         <div class='featured-name'><a href=''>{{name}}</a></div>

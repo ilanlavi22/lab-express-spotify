@@ -80,7 +80,6 @@ app.get('/tracks/:id', (req, res) => {
         .getAlbumTracks(id, { limit: 6 })
         .then(data => {
             const tracks = data.body.items;
-            console.log(tracks)
             res.render('tracks', { title: 'Listen to Tracks', tracks });
         })
         .catch(error => {
